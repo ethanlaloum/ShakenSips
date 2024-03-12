@@ -1,0 +1,22 @@
+/* global.css */
+
+:root {
+    --color-background-light: #FFD8E3;
+    --color-text-light: #FFE2ED;
+    --color-background-dark: #333333;
+    --color-text-dark: #ffffff;
+}
+
+.body {
+    transition: background-color 0.5s, color 0.5s;
+}
+
+.light-mode {
+    background-color: var(--color-background-light);
+    color: var(--color-text-light);
+  }
+
+.dark-mode {
+    background-color: var(--color-background-dark);
+    color: var(--color-text-dark);
+}
