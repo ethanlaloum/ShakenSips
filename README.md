@@ -5,7 +5,7 @@ Bienvenue sur mon site de cocktail, suivez les instruction ci-dessous pour visit
 ## Project Setup
 
 ```sh
-git clone <URL_du_depot>
+git clone git@github.com:ethanlaloum/ShakenSips.git
 cd ShakenSips
 npm install
 ```
