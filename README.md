@@ -1,6 +1,7 @@
 # Shaken Ships
 
 Bienvenue sur mon site de cocktail, suivez les instruction ci-dessous pour visiter mon site.
+Ce site est toujours en cours de développement.
 
 ## Project Setup
 
