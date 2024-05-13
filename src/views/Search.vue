@@ -65,6 +65,8 @@
     const name = cocktailName.value;
     switch (requestType) {
       case "Name":
+        console.log(requestType);
+        console.log(name);
         await router.push({ name: 'Results', params: { name: name, type: "name" }});
         break;
       case "First Letter":
@@ -123,9 +125,11 @@
         <SelectContent>
           <SelectGroup>
             <SelectLabel>Filters</SelectLabel>
-            <SelectItem @click="changeType('Name')" value="Name">Name</SelectItem>
-            <SelectItem @click="changeType('First Letter')" value="First Letter">First Letter</SelectItem>
-            <SelectItem @click="changeType('Ingredient')" value="Ingredient">Ingredient</SelectItem>
+            <div class="flex flex-col space-y-1">
+              <Button @click="changeType('Name')" class="bg-white text-black hover:bg-black hover:text-white" value="Name">Name</Button>
+              <Button @click="changeType('First Letter')" class="bg-white text-black hover:bg-black hover:text-white" value="First Letter">First Letter</Button>
+              <Button @click="changeType('Ingredient')" class="bg-white text-black hover:bg-black hover:text-white" value="Ingredient">Ingredient</Button>
+            </div>
           </SelectGroup>
         </SelectContent>
       </Select>

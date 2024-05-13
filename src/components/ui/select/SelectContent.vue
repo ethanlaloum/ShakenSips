@@ -16,6 +16,7 @@ defineOptions({
 const props = defineProps({
   forceMount: { type: Boolean, required: false },
   position: { type: String, required: false, default: "popper" },
+  bodyLock: { type: Boolean, required: false },
   side: { type: null, required: false },
   sideOffset: { type: Number, required: false },
   align: { type: null, required: false },
