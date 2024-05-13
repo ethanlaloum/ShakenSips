@@ -1,29 +1,18 @@
-# meteo
+# Shaken Ships
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Bienvenue sur mon site de cocktail, suivez les instruction ci-dessous pour visiter mon site.
+Ce site est toujours en cours de développement.
 
 ## Project Setup
 
 ```sh
+git clone git@github.com:ethanlaloum/ShakenSips.git
+cd ShakenSips
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Lancer le site en local
 
 ```sh
 npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
 ```
