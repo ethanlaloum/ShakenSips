@@ -9,9 +9,8 @@
     } else if (!isDark.value && index == 0) {
       return "../../img/moon.png"
     }
-    if (index == 1) {
+    if (index == 1)
       return "../../img/Flamingo.png"
-    }
   }
 </script>
 
