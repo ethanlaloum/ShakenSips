@@ -108,8 +108,8 @@
     <div class="corps">
       <section class="header">
         <div class="title-wrapper">
-          <h1 class="sweet-title">
-            <span data-text="find">find</span>
+          <h1 class="sweet-title space-y-2">
+            <span data-text="Search">Search</span>
             <span data-text="your">your</span>
             <span data-text="cocktail">cocktail</span>
           </h1>

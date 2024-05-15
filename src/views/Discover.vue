@@ -20,8 +20,19 @@
     TabsTrigger,
   } from '@/components/ui/tabs'
   import { useDark } from '@vueuse/core';
-  import { isReactive, toRaw } from 'vue';
   import { ref } from 'vue';
+  import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
+
   const router = useRouter();
   const random = ref([]);
   const ingredient = ref();
@@ -32,7 +43,7 @@
   const showDescription = ref(Array(10).fill(false));
   const selectedValue = ref('default');
   const modelValue = ref([]);
-  let tableau;
+  const tableau = ref([]);
 
   async function fetchRandom() {
     const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`)
@@ -47,19 +58,19 @@
   async function filterRandom()
   {
     const ok = false;
-    while (bool.value == false) {
+    for (let i = 0; bool.value == false; i++) {
       loading.value = true;
       await fetchRandom();
+      ingredientsAPIinTab();
       const compare = random.value[0].strAlcoholic.localeCompare(selectedValue.value);
-      for (let i = 0; i < modelValue.value.length; i++) {
-        // if (random.value[0].strIngredients.includes(modelValue.value[i]) == false) {
-        //   ok = true;
-        //   break;
-        // }
-        console.log(random.value[0].strIngredients);
-      }
-      if (compare == 0)
+      let tousPresent = modelValue.value.every((element) => tableau.value.includes(element));
+      if (compare == 0 && tousPresent == true)
         bool.value = true;
+      console.log(i);
+      if (i >= 55) {
+        alert("No cocktail found with these ingredients, try without ingredients");
+        break;
+      }
     }
     bool.value = false;
     loading.value = false;
@@ -73,16 +84,24 @@
     await router.push({ name: 'FocusResults', params: { id: id }});
   }
 
-  function printmodelvalue()
+  async function ingredientsAPIinTab()
   {
-    console.log(modelValue.value);
-    console.log(selectedValue.value);
-    console.log(random.value);
-    for (const i = 0; random.value.strIngredients + i != null; i++)
-    {
-      console.log(random.value[0].strIngredients + i);
-    }
-    tableau.push(random.value);
+    if (random.value[0].strIngredient1 != null)
+      tableau.value.push(random.value[0].strIngredient1);
+    if (random.value[0].strIngredient2 != null)
+      tableau.value.push(random.value[0].strIngredient2);
+    if (random.value[0].strIngredient3 != null)
+      tableau.value.push(random.value[0].strIngredient3);
+    if (random.value[0].strIngredient4 != null)
+      tableau.value.push(random.value[0].strIngredient4);
+    if (random.value[0].strIngredient5 != null)
+      tableau.value.push(random.value[0].strIngredient5);
+    if (random.value[0].strIngredient6 != null)
+      tableau.value.push(random.value[0].strIngredient6);
+    if (random.value[0].strIngredient7 != null)
+      tableau.value.push(random.value[0].strIngredient7);
+    if (random.value[0].strIngredient8 != null)
+      tableau.value.push(random.value[0].strIngredient8);
   }
 
 </script>
@@ -92,7 +111,7 @@
     <div class="corps">
       <section class="header">
         <div class="title-wrapper">
-          <h1 class="sweet-title">
+          <h1 class="sweet-title space-y-2">
             <span data-text="Find">Find</span>
             <span data-text="YOUR">YOUR</span>
             <span data-text="cocktail">cocktail</span>
@@ -152,12 +171,11 @@
             </TagsInput>
           </CardContent>
           <CardFooter>
-            <Button @click="printmodelvalue()">Show my cocktail</Button>
+            <Button @click="filterRandom()">Show my cocktail</Button>
           </CardFooter>
         </Card>
       </TabsContent>
     </Tabs>
-    <Button @click="filterRandom()">Boutton</Button>
     <div class="container h-screen">
       <div v-if="loading == true" class="text-white">Loading...</div>
       <div v-else>

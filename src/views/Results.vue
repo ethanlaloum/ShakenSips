@@ -83,7 +83,7 @@
     <div class="corps">
       <section class="header">
         <div class="title-wrapper">
-          <h1 class="sweet-title">
+          <h1 class="sweet-title space-y-2">
             <span data-text="results">Results</span>
             <span data-text="for">For</span>
             <span :data-text="name">{{ name }}</span>
