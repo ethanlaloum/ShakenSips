@@ -6,9 +6,9 @@ import { cn } from "@/lib/utils";
 const props = defineProps({
   variant: { type: null, required: false },
   size: { type: null, required: false },
-  as: { type: String, required: false, default: "button" },
   class: { type: null, required: false },
   asChild: { type: Boolean, required: false },
+  as: { type: null, required: false, default: "button" },
 });
 </script>
 

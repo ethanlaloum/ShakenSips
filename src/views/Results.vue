@@ -1,6 +1,6 @@
 <script setup>
   import { useRoute, useRouter } from 'vue-router';
-  import { ref } from 'vue';
+  import { ref, onMounted } from 'vue';
   import { useDark } from '@vueuse/core';
 
   const isDark = useDark()
@@ -10,6 +10,7 @@
   const type = route.params.type;
   const showDescription = ref(Array(10).fill(false));
   const router = useRouter();
+  const loading = ref(true);
 
   async function fetchByName(cocktailName)
   {
@@ -48,13 +49,13 @@
   {
     switch (type) {
       case "name":
-        fetchByName(name);
+        await fetchByName(name);
         break;
       case "first":
-        fetchByFirstLetter(name);
+        await fetchByFirstLetter(name);
         break;
       case "ingredient":
-        fetchByIngredient(name);
+        await fetchByIngredient(name);
         break;
       case "random":
         break;
@@ -62,9 +63,12 @@
         break;
     }
   }
-  if (name != undefined) {
-    fetchByType();
-  }
+
+  onMounted(async() => {
+    await fetchByType();
+    loading.value = false;
+  });
+
   const toggleText = (index, show) => {
     showDescription.value[index] = show;
   }
@@ -88,17 +92,22 @@
       </section>
     </div>
     <div class="container">
-      <div class="card h-screen" v-for="(drink, index) in drinks.slice(0, 10)" :key="index"
-      @mouseenter="toggleText(index, true)"
-      @mouseleave="toggleText(index, false)"
-      @click="focusResults(drink.idDrink)">
-        <div class="box">
-          <img :src="drink.strDrinkThumb" class="absolute inset-0 object-cover opacity-50 w-full h-full" alt="Drink Image">
-          <div class="content transition-opacity duration-300">
-            <h2>{{ index + 1 }}</h2>
-            <h3 v-if="!showDescription[index]">{{ drink.strDrink }}</h3>
-            <p v-if="!showDescription[index]">{{ drink.strCategory }} <br> {{ drink.strAlcoholic }}</p>
-            <p v-else>{{ drink.strInstructions }}</p>
+      <div v-if="loading == true" class="h-screen">
+        <h1 class="text-white text-4xl">Loading...</h1>
+      </div>
+      <div v-else class="flex flex-wrap">
+        <div class="card h-screen" v-for="(drink, index) in drinks.slice(0, 10)" :key="index"
+        @mouseenter="toggleText(index, true)"
+        @mouseleave="toggleText(index, false)"
+        @click="focusResults(drink.idDrink)">
+          <div class="box">
+            <img :src="drink.strDrinkThumb" class="absolute inset-0 object-cover opacity-50 w-full h-full" alt="Drink Image">
+            <div class="content transition-opacity duration-300">
+              <h2>{{ index + 1 }}</h2>
+              <h3 v-if="!showDescription[index]">{{ drink.strDrink }}</h3>
+              <p v-if="!showDescription[index]">{{ drink.strCategory }} <br> {{ drink.strAlcoholic }}</p>
+              <p v-else>{{ drink.strInstructions }}</p>
+            </div>
           </div>
         </div>
       </div>

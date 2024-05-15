@@ -66,7 +66,6 @@
     switch (requestType) {
       case "Name":
         console.log(requestType);
-        console.log(name);
         await router.push({ name: 'Results', params: { name: name, type: "name" }});
         break;
       case "First Letter":
@@ -117,7 +116,7 @@
         </div>
       </section>
     </div>
-    <div class="absolute top-3/5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-screen-lg mx-auto flex justify-center">
+    <div class="absolute top-3/5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-screen-lg mx-auto flex justify-center space-x-2">
       <Select>
         <SelectTrigger class="w-[180px] h-[50px]">
           <SelectValue placeholder="Select a Filter" class="dark:text-white"/>
